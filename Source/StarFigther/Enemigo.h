@@ -3,27 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
-#include "Nave.generated.h"
-
-class UStaticMeshComponent;
+#include "GameFramework/Actor.h"
+#include "Enemigo.generated.h"
 
 UCLASS()
-class STARFIGTHER_API ANave : public APawn
+class STARFIGTHER_API AEnemigo : public AActor
 {
-private:
 	GENERATED_BODY()
-
+	
+private:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Ship", meta = (AllowPrivateAccess = "true"))
 		UStaticMeshComponent* ShipMeshComponent;
-public:
-	// Sets default values for this pawn's properties
-	ANave();
+public:	
+	// Sets default values for this actor's properties
+	AEnemigo();
 
-private:
 	FString Nombre;
-	int32 NumeroNavesDerrivadas;
-	int32 NumeroMisilesDisponibles;
 
 protected:
 	// Called when the game starts or when spawned
@@ -39,19 +34,12 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void Atacar() {};
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	// Static names for axis bindings
-	static const FName MoveForwardBinding;
-	static const FName MoveRightBinding;
-
-	
 	FORCEINLINE float GetEnergy() const { return Energy; }
 	FORCEINLINE float GetMoveSpeed() const { return MoveSpeed; }
-	
+	FORCEINLINE FString GetNombre() const { return Nombre; }
+
 	FORCEINLINE void SetEnergy(float _Energy) { Energy = _Energy; }
 	FORCEINLINE void SetMoveSpeed(float _MoveSpeed) { MoveSpeed = _MoveSpeed; }
-
 };

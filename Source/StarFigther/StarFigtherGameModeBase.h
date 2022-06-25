@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
+#include "Enemy.h"
 #include "StarFigtherGameModeBase.generated.h"
 
 /**
@@ -15,6 +16,8 @@ class STARFIGTHER_API AStarFigtherGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 public:
 	AStarFigtherGameModeBase();
+
+	IEnemy* Enemy;
 
 public:
 	// Called every frame
